@@ -1,0 +1,74 @@
+<div id="app">
+
+<!--  <mat-toolbar color="primary" (scroll)="scrollHandler($event)" style="position: fixed; z-index: 10">
+
+
+    <span class="example-fill-remaining-space"></span>
+
+  <nav class="navbar navbar-expand-sm navbar-light " style="background-color: steelblue">
+-->
+  <nav class="navbar navbar-expand-sm navbar-light " style="
+  background-color: steelblue ">
+
+ <span class="nav-title">
+    <img src="../assets/image/esprit.png" width="140px" height="48px" routerLink="home"/>
+    </span>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/admin" class="nav-link" routerLink="admin"></a>
+      </li>
+
+
+      <li class="nav-item" *ngIf="showModeratorBoard">
+        <a href="/mod" class="nav-link" routerLink="mod"></a>
+      </li>
+      <li class="nav-item" *ngIf="showEncadrantBoard">
+        <a href="/encadrant" class="nav-link" routerLink="encadrant"></a>
+      </li>
+
+      <li class="nav-item">
+        <a href="/rapp" class="nav-link" *ngIf="showRappBoard" routerLink="rapp"></a>
+      </li>
+
+      <li class="nav-item">
+        <a href="/user" class="nav-link" *ngIf="showUserBoard" routerLink="user"></a>
+      </li>
+
+
+
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+<!--      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+      </li>
+    -->
+      <span class="material-icons">
+login
+</span>  <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login" style="margin-top: -8px; margin-right: 20px;">Connexion</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+
+      <span class="material-icons">
+  perm_identity
+      </span>
+
+      <li class="nav-item">
+        <a  href="/profile" class="nav-link" routerLink="profile" style="margin-top: -8px; margin-right: 20px;"> {{ username }}
+
+        </a>
+      </li>
+      <span class="material-icons">
+      logout
+    </span>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()" style="margin-top: -8px; margin-right: 20px;" >Deconnexion</a>
+      </li>
+    </ul>
+  <!--</nav>-->
+  </nav></div>
+<router-outlet></router-outlet>

@@ -1,0 +1,132 @@
+<button mat-icon-button (click)="drawer.toggle()" xmlns="http://www.w3.org/1999/html">
+  <mat-icon>menu</mat-icon>
+</button>
+
+
+
+
+
+
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" >
+    <mat-nav-list>
+      <div class="profile-card" style="margin-right: 1000px">
+
+        <img src="../../../assets/image/000.jpg" style="height: 170px;width:210px" >
+        <h4><span style="margin-left: 44px">{{currentUser.email}}</span></h4>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Pages</h2>
+
+      <a mat-list-item href="/tout" routerLink="/tout">Toutes les stages</a>
+      <a mat-list-item href="/fiches" routerLink="/fiches">Toutes les fiches</a>
+
+      <a mat-list-item href="/list1" routerLink="/list1">Affecter-Encadrant </a>
+      <a mat-list-item href="/list2" routerLink="/list2">Affecter Rapporteur </a>
+      <a mat-list-item href="/allAvis" routerLink="/allAvis">Reclamations </a>
+      <a mat-list-item a href="/pie" routerLink="/pie">Statistique </a>
+      <a mat-list-item  a href="/recherche" routerLink="/recherche">Rechercher</a>
+      <a mat-list-item  a href="/validation" routerLink="/validation">Valider stage</a>
+
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Tools</h2>
+
+
+    </mat-nav-list>
+  </mat-drawer>
+
+
+
+
+
+
+
+  <div class="example-sidenav-content" style="margin-top: -1000px">
+
+  </div>
+  <div class="card"  style="margin-left: 10px; width: 1520px;margin-top: 240px">
+    <form class="example-form"  name="form"
+          (ngSubmit)="f.form.valid && onEdit()"
+          #f="ngForm"
+          novalidate>
+
+
+      <div class="col-xl-12"></div>
+      <div class="col-xl-12" style="width:1200px;color: dimgray;">
+        <div style="
+margin-left: 50px; width:1200px;       background-color: cornflowerblue">
+          <div class="card" style="margin-top: 40px;
+     width:1200px;     border: none; background-color:white">
+            <div class="card-body" style="
+           margin-left: 50px; margin-top: 50px;background-color: white">
+
+
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Stagiaire</mat-label>
+                <input matInput id="descriptions"   required
+                       name="description" ngModel
+                       [(ngModel)]="name"
+                       aria-label="State"
+                       [matAutocomplete]="auto"
+                       [formControl]="stateCtrl">
+                <mat-autocomplete #auto="matAutocomplete">
+                </mat-autocomplete></mat-form-field>
+              &nbsp;&nbsp;&nbsp;
+              <button mat-flat-button color="primary" type="submit">Chercher</button>
+              <br>
+
+
+              <mat-slide-toggle
+                [checked]="stateCtrl.disabled"
+                (change)="stateCtrl.disabled ? stateCtrl.enable() : stateCtrl.disable()">
+                Desactiver ?
+              </mat-slide-toggle>
+
+            </div>
+          </div>
+        </div></div>
+    </form>
+    <div class="container">
+
+      <div class="panel panel-default" >
+
+        <div class="panel-body" *ngIf="user" >
+          <img src="../../../assets/image/wx.jpg" style="width: 970px;margin-left:28px;height:140px;">
+<br><br><br>
+          <h3>utilisateur :&nbsp;&nbsp;&nbsp; {{user.stagiaire.username}}</h3>
+          <br><h3>Email :&nbsp;&nbsp;&nbsp;{{user.stagiaire.email}}</h3>
+          <br><h3>Numero :&nbsp;&nbsp;&nbsp;{{user.stagiaire.telephone}}</h3>
+          <br><h3>Mise le :&nbsp;&nbsp;&nbsp;{{user.put}}</h3>
+          <br><h3>Titre de projet :&nbsp;&nbsp;&nbsp;{{user.titre}}</h3>
+          <br><h3>Description du projet :&nbsp;&nbsp;&nbsp;{{user.description}}</h3>
+          <br><h3>Problématique du projet :&nbsp;&nbsp;&nbsp;{{user.problm}}</h3>
+
+         <div style="margin-top: -381px;margin-left: 600px">
+           <br><h3>Fonctionnalités :&nbsp;&nbsp;&nbsp;{{user.techno}}</h3>
+           <br><h3>technologies :&nbsp;&nbsp;&nbsp;{{user.techno}}</h3>
+          <br><h3> Statut du projet ? :&nbsp;&nbsp;&nbsp;{{user?.status}}</h3>
+           <br><h3>Note_esprit :&nbsp;&nbsp;&nbsp;{{user?.note_univ}}</h3><br><h3>
+           Note_jury :&nbsp;&nbsp;&nbsp;{{user.note_jury}} &nbsp;&nbsp;&nbsp;
+         </h3>
+           <br><h3>Note_rapporteur :&nbsp;&nbsp;&nbsp;{{user.note_rap}} &nbsp;&nbsp;</h3>
+
+          <br><h3>Email_encadrant_entreprise :&nbsp;&nbsp;&nbsp;{{user?.enseig_stage?.email}}</h3>
+
+         </div>
+        </div></div>
+
+
+
+
+
+
+
+
+    </div>
+  </div></mat-drawer-container>

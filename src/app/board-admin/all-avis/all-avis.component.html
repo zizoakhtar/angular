@@ -1,0 +1,160 @@
+<button mat-icon-button (click)="drawer.toggle()" xmlns="http://www.w3.org/1999/html">
+  <mat-icon>menu</mat-icon>
+</button>
+
+
+
+
+
+
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" >
+    <mat-nav-list>
+      <div class="profile-card" style="margin-right: 1000px">
+
+        <img src="../../../assets/image/000.jpg" style="height: 170px;width:210px" >
+        <h4><span style="margin-left: 44px">{{currentUser.email}}</span></h4>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Pages</h2>
+
+      <a mat-list-item href="/tout" routerLink="/tout">Toutes les stages</a>
+      <a mat-list-item href="/fiches" routerLink="/fiches">Toutes les fiches</a>
+
+      <a mat-list-item href="/list1" routerLink="/list1">Affecter-Encadrant </a>
+      <a mat-list-item href="/list2" routerLink="/list2">Affecter Rapporteur </a>
+      <a mat-list-item href="/allAvis" routerLink="/allAvis">Reclamations </a>
+      <a mat-list-item a href="/pie" routerLink="/pie">Statistique </a>
+      <a mat-list-item  a href="/recherche" routerLink="/recherche">Rechercher</a>
+      <a mat-list-item  a href="/validation" routerLink="/validation">Valider stage</a>
+
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Tools</h2>
+
+
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="example-sidenav-content" style="margin-top: -1000px">
+
+  </div>
+  <div class="card"  style="margin-left: 10px; width: 1520px;margin-top: 280px">
+
+
+  <p-table #dt [value]="t1" [rows]="10" [paginator]="true"
+               [globalFilterFields]="[  'id',
+      'description'
+
+]"
+               [rowHover]="true" dataKey="id"
+>
+
+        <ng-template pTemplate="header">
+          <tr>
+
+            <th pSortableColumn="theme">Etudiant
+              <p-sortIcon field="theme"></p-sortIcon>
+            </th>  <th pSortableColumn="dateDebut">Objet du réclamation
+            <p-sortIcon field="dateDebut"></p-sortIcon>
+          </th>
+            <th pSortableColumn="dateDebut">Réclamation
+              <p-sortIcon field="dateDebut"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateDebut">Date
+              <p-sortIcon field="dateDebut"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateDebut">Capture
+              <p-sortIcon field="dateDebut"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateDebut">Traiter
+              <p-sortIcon field="dateDebut"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="dateDebut"> Supprimer
+              <p-sortIcon field="dateDebut"></p-sortIcon>
+            </th>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-s>
+          <tr  >
+
+<td>{{s.useravis.email}}</td>
+            <td>{{s.objet}}</td>
+            <td>{{s.description}}</td>
+<td>{{s.date}}</td>
+            <td>{{s.name}}
+             &nbsp;&nbsp;&nbsp; <span  class="material-icons" (click)="downloadFile(s?.name)">
+vertical_align_bottom
+
+
+</span>
+            </td>
+            <td>
+              <a class="btn btn-danger" (click)="onEdit(s)"
+                 style="background-color: darkseagreen"><div class="fa fa-fw fa-eraser"></div>Traiter</a>
+            </td>
+
+            <td>
+              <a class="btn btn-danger" (click)="onDelete(s.id)"><div class="fa fa-fw fa-eraser"></div>Supprimer</a>
+            </td>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="p-d-flex p-ai-center p-jc-between">
+            Au total, il y a {{t1 ? t1.length : 0 }} reclamation(s).
+          </div>
+        </ng-template>
+      </p-table>
+
+
+
+
+    <p-dialog  [(visible)]="traiter" [style]="{width: '450px'} "   [modal]="true" styleClass="p-fluid" [baseZIndex]="70000">
+      <div class="container">
+
+        <div class="panel-body" *ngIf="currentprod" >
+
+          <div class="panel-body" >
+            <form
+              name="form"
+              (ngSubmit)="f.form.valid && onupdateprod()"
+              #f="ngForm"
+              novalidate>
+              <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Réponse </mat-label>
+                  <textarea type="text" matInput   #ade="ngModel" required
+                         minlength="3"
+                         maxlength="2000"  name="ade" ngModel
+                         [(ngModel)]="text">
+                  </textarea>
+                </mat-form-field>
+              </div>
+              <button class="btn btn-success" type="submit" (click)="onupdateprod()">update</button>
+              <br> <br>
+            </form>
+          </div>
+          <div [style]="{width: '300px'}"  >
+            <br><br><br>
+
+          </div>
+        </div>
+      </div>
+
+    </p-dialog>
+
+
+
+    </div>
+
+
+
+
+</mat-drawer-container>

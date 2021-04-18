@@ -1,0 +1,273 @@
+<br><br><br><br>
+<h2>
+</h2>
+
+<div class="container"> <!-- Links -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <img src="../../../assets/image/dddd.png" style=" height: 150px;width: 210px;">
+
+    </div>
+
+    <ul class="list-unstyled components">
+
+      <li>
+        <a href="/convention" routerLink="/convention">Convention </a>
+
+      </li>
+      <li>
+        <a href="/fiche" routerLink="/fiche">Fiche-pfe </a>
+
+      </li>
+      <li>
+        <a href="/upload" routerLink="/upload">PFE </a>
+      </li>
+      <li>
+        <a href="/plagiat" routerLink="/plagiat">Plagiat </a>
+      </li>
+      <li>
+        <a href="/noteti" routerLink="/noteti">Note PFE</a>
+      </li>
+      <li>
+        <a href="/avis" routerLink="/avis">Reclamation</a>
+      </li>
+
+
+    </ul>
+
+
+
+
+  </nav>
+
+  <!-- Page Content Holder -->
+  <div id="contente" style="margin-top: -15px;">
+    <td class="panel-body" id ="child-left">
+      <form
+        name="form"
+        (ngSubmit)="f.form.valid && ajoutfiche()"
+        #f="ngForm"
+        novalidate>
+        <div class="widget">
+
+          <div class="col-xl-12"></div>
+          <div class="col-xl-12" style=" margin-left: -50px;width:850px;color: dimgray;">
+            <div style="background-color: cornflowerblue">
+              <div class="card" style="border: none; background-color:white">
+                <br> <h1><span style=" margin-left:250px;color: darkcyan;width: 40px"><i> Votre Fiche-pfe  </i></span></h1>
+                <br>
+                <table class="example-full-width" cellspacing="0"><tr>
+                  <td>
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width">
+                        <input matInput
+                               minlength="32"
+                               maxlength="2000"
+                               value="    {{ currentUser.username }}" >
+                        <span class="material-icons" style="margin-left: 190px;margin-top: -24px">
+  perm_identity
+      </span>
+                      </mat-form-field>
+                    </div></td><td>
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input matInput
+                             value="    {{ currentUser.email }}"
+                             minlength="3"
+                             maxlength="2000"  ><span class="material-icons" style="margin-left: 200px;margin-top: -24px">
+mail
+</span>
+                    </mat-form-field>
+                  </div></td><td>
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input  matInput
+                              minlength="8"
+                              maxlength="8"
+                              value="    {{ currentUser.telephone }}" >
+                      <span class="material-icons" style="margin-left: 200px;margin-top: -24px">
+call
+</span>
+                    </mat-form-field>
+                  </div>
+                </td></tr></table>
+                <div class="form-group">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Titre du stage</mat-label>
+                    <input matInput id="descriptions"   #descriptions="ngModel" required
+                           minlength="10"
+                           maxlength="2000"  name="description" ngModel
+                           [(ngModel)]="titre">
+                  </mat-form-field>
+                </div>
+                <div class="alert-danger" *ngIf="f.submitted && descriptions.invalid">
+                  <div *ngIf="descriptions.errors.required">sujet is required</div>
+                  <div *ngIf="descriptions.errors.minlength">
+                    sujet must be at least 10 characters
+                  </div>
+                  <div *ngIf="descriptions.errors.maxlength">
+                    sujet must be at most 20 characters
+                  </div>
+                </div>
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Problématique du stage</mat-label>
+                  <input matInput id="dd"   #dd="ngModel" required
+                         minlength="3"
+                         maxlength="2000" name="dd" ngModel
+                         [(ngModel)]="problm">
+
+                </mat-form-field>
+
+                <div class="alert-danger" *ngIf="f.submitted && dd.invalid">
+                  <div *ngIf="dd.errors.required">Problematique is required</div>
+                  <div *ngIf="dd.errors.minlength">
+                    Problematique must be at least 10 characters
+                  </div>
+                  <div *ngIf="dd.errors.maxlength">
+                    Problematique must be at most 20 characters
+                  </div>
+                </div>
+                <div class="form-group">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Description</mat-label>
+                    <input type="text" matInput   #desc="ngModel" required
+                           minlength="3"
+                           maxlength="2000" name="desc" ngModel
+                           [(ngModel)]="description">
+
+                  </mat-form-field>
+                </div>
+                <table class="example-full-width" cellspacing="0"><tr>
+                  <td>
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Fonctionnalité1</mat-label>
+                        <textarea type="text" matInput   #foncti="ngModel" required
+                                  minlength="3"
+                                  maxlength="2000" name="foncti" ngModel
+                                  [(ngModel)]="fonct"></textarea>
+                      </mat-form-field>
+                    </div>
+                  </td><td>
+
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Fonctionnalité2</mat-label>
+                      <textarea type="text" matInput   #ft1="ngModel" required
+                                minlength="3"
+                                [(ngModel)]="f1"    maxlength="2000" name="ft1" ngModel
+                      ></textarea>
+
+
+                    </mat-form-field>
+                  </div>
+
+                </td><td>                 <div class="form-group">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Fonctionnalité3</mat-label>
+                    <textarea type="text" matInput   #ft2="ngModel" required
+                              [(ngModel)]="f2"     minlength="3"
+                              maxlength="2000" name="ft2" ngModel
+                    ></textarea>
+
+
+
+                  </mat-form-field>
+                </div>
+                </td><td><div class="form-group">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Fonctionnalité4</mat-label>
+                    <textarea type="text" matInput   #ft3="ngModel" required
+                              [(ngModel)]="f3"       minlength="3"
+                              maxlength="2000" name="ft3" ngModel
+                    ></textarea>
+
+                  </mat-form-field>
+                </div>
+
+                </td></tr></table>
+
+                <div class="alert-danger" *ngIf="f.submitted && foncti.invalid">
+                  <div *ngIf="foncti.errors.required">Fonctionnalité is required</div>
+                  <div *ngIf="foncti.errors.minlength">
+                    Fonctionnalité   must be at least 3 characters
+                  </div>
+                  <div *ngIf="foncti.errors.maxlength">
+                    Fonctionnalité must be at most 20 characters
+                  </div>
+                </div>
+
+                <table class="example-full-width" cellspacing="0"><tr>
+                  <td>
+
+
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Technologie1</mat-label>
+                        <input type="text" matInput   #waw="ngModel" required
+                               minlength="3"
+                               maxlength="2000"  name="waw" ngModel
+                               [(ngModel)]="techno">
+
+                      </mat-form-field>
+                    </div>
+                  </td><td>
+
+
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Technologie2</mat-label>
+                      <input type="text" matInput   #waaw="ngModel" required
+                             minlength="3"
+                             maxlength="2000"  name="waaw" ngModel
+                             [(ngModel)]="t1">
+
+                    </mat-form-field>
+                  </div>
+
+
+
+                </td>
+                  <td>
+
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Technologie3</mat-label>
+                        <input type="text" matInput   #waw="ngModel" required
+                               minlength="3"
+                               maxlength="2000"  name="waw" ngModel
+                               [(ngModel)]="t2">
+
+                      </mat-form-field>
+                    </div>
+                  </td>
+                  <td>
+
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Technologie4</mat-label>
+                        <input type="text" matInput   #waaaw="ngModel" required
+                               minlength="3"
+                               maxlength="2000"  name="waaaw" ngModel
+                               [(ngModel)]="t3">
+
+                      </mat-form-field>
+                    </div>
+                  </td>
+                </tr></table>
+                <br>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-info progress-bar-striped"
+                       role="progressbar" attr.aria-valuenow="{{progress}}"
+                       aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress+'%'}">
+                    {{progress}}%</div>
+                </div>
+
+
+                <button class="btn btn-success" type="submit" style=" background-color: darkcyan; margin-left: 250px;width: 140px" >Telecharger</button>
+                <div class="alert alert-light" role="alert">{{ message }}</div>
+              </div></div></div></div>
+      </form>
+  </div>
+</div>
