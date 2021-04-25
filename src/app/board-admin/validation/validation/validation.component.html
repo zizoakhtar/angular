@@ -1,0 +1,226 @@
+<button mat-icon-button (click)="drawer.toggle()" xmlns="http://www.w3.org/1999/html">
+  <mat-icon>menu</mat-icon>
+</button>
+
+
+
+
+
+
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" >
+    <mat-nav-list>
+      <div class="profile-card" style="margin-right: 1000px">
+
+        <img src="../../../assets/image/000.jpg" style="height: 170px;width:210px" >
+        <h4><span style="margin-left: 44px">{{currentUser.email}}</span></h4>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Pages</h2>
+
+      <a mat-list-item href="/tout" routerLink="/tout">Toutes les stages</a>
+      <a mat-list-item href="/fiches" routerLink="/fiches">Toutes les fiches</a>
+
+      <a mat-list-item href="/list1" routerLink="/list1">Affecter-Encadrant </a>
+      <a mat-list-item href="/list2" routerLink="/list2">Affecter Rapporteur </a>
+      <a mat-list-item href="/allAvis" routerLink="/allAvis">Reclamations </a>
+      <a mat-list-item a href="/pie" routerLink="/pie">Statistique </a>
+      <a mat-list-item  a href="/recherche" routerLink="/recherche">Rechercher</a>
+      <a mat-list-item  a href="/validation" routerLink="/validation">Valider stage</a>
+
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Tools</h2>
+
+
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="example-sidenav-content" style="margin-top: -1000px">
+
+  </div>
+  <div class="card"  style="margin-left: 10px; width: 1520px;margin-top: 266px">
+
+
+  <p-table #dt [value]="t1" [rows]="10" [paginator]="true"
+               [globalFilterFields]="[  'titre',
+      'problm',
+      'fonct',
+      'description',
+      'techno'
+]"
+               [rowHover]="true" dataKey="id"
+
+               currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+               [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex p-ai-center p-jc-between ">
+                <span class="p-input-icon-left ">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                           placeholder="        Rechercher..." />
+                </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+
+            <th pSortableColumn="theme">Etudiant
+              <p-sortIcon field="theme"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateDebut">Theme
+              <p-sortIcon field="dateDebut"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateFin">Statut
+              <p-sortIcon field="dateFin"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateFin">Note_jury
+              <p-sortIcon field="dateFin"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateFin">Note_enc
+              <p-sortIcon field="dateFin"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateFin">Note_rap
+              <p-sortIcon field="dateFin"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateFin">Affecter
+              <p-sortIcon field="dateFin"></p-sortIcon>
+            </th>
+
+
+
+            <th pSortableColumn="etat">Valider
+              <p-sortIcon field="etat"></p-sortIcon>
+            </th>
+
+            <th>
+              <i class="pi pi-angle-double-down" style="font-size: 2rem"></i>
+
+            </th>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-s>
+          <tr  *ngIf="s.status ==en_cours">
+
+            <td>{{s.stagiaire.email}}</td>
+            <td>{{s.titre}}</td>
+            <td>{{s.status}}</td>
+            <!--<td><div *ngIf="s.enseig_option.email.value" >{{s.enseig_option.email}}</div></td>-->
+            <td>{{s.note_jury}}</td>
+            <td>{{s.note_univ}}</td>
+            <td>{{s.note_rap}}</td>
+            <td>              <a class="btn btn-success" (click)="onGet(s)"><div class="fa fa-fw fa-eraser"></div>Note_jury</a>
+            </td>
+<td>              <a class="btn btn-success" (click)="onEdit(s.id)"><div class="fa fa-fw fa-eraser"></div>Valider</a>
+            </td>
+            <td>
+              <a class="btn btn-warning" (click)="ooshow()"><div class="fa fa-fw fa-eraser"></div>Détailles</a>
+              <p-dialog  header="Title" [style]="{width: '600px'}" [(visible)]="display">
+                <p-accordion>
+                  <p-accordionTab header="Encadrant">
+                    {{s?.enseig_stage?.email}}
+                  </p-accordionTab>
+                  <p-accordionTab header="Nom_stagiaire">
+                    {{s?.stagiaire?.username}}
+                  </p-accordionTab>
+
+
+                  <p-accordionTab header="Statut">
+
+                    {{s.status}}
+                  </p-accordionTab>
+                  <p-accordionTab header="Problematique">
+                    {{s.problm}}
+                  </p-accordionTab>
+                  <p-accordionTab header=" Fonctionnalités ">
+
+                    fonct1 :       {{s.fonctionnality}}
+                    <br>
+                    fonct2 :     {{s.f1}}
+                    <br>
+                    fonct3 :     {{s.f2}}
+                    <br>
+                    fonct4 :     {{s.f3}}
+                  </p-accordionTab>
+
+                  <p-accordionTab header="Technologies">
+
+                    Tech1 :  {{s?.techno}}
+                    <br>
+                    Tech2 :   {{s?.t1}}
+                    <br>
+                    Tech3 :    {{s?.t2}}
+                    <br>
+                    Tech4 :   {{s?.t3}}
+                  </p-accordionTab>
+
+                </p-accordion>
+
+              </p-dialog>   </td>
+
+
+
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="p-d-flex p-ai-center p-jc-between">
+            Au total, il y a {{t1 ? t1.length : 0 }} convention(s).
+          </div>
+        </ng-template>
+      </p-table>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+    <p-dialog  [(visible)]="display1" [style]="{width: '450px'} "   [modal]="true" styleClass="p-fluid" [baseZIndex]="70000">
+      <div class="container">
+
+
+          <div class="panel-body" *ngIf="currentprod" >
+            <form *ngIf="!isSuccessful"
+                  name="form"
+                  (ngSubmit)="f.form.valid && onupdateprod()"
+                  #f="ngForm"
+                  novalidate>
+
+
+              <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Note_jury</mat-label>
+                  <input type="text" matInput   #ade="ngModel" required
+                         minlength="3"
+                         maxlength="2000"  name="ade" ngModel
+                         [(ngModel)]="currentprod.note_jury">
+
+                </mat-form-field>
+              </div>
+
+              <button class="btn btn-success" type="button" (click)="onupdateprod()">update</button>
+              <br> <br>
+            </form>
+          </div>
+          <div [style]="{width: '300px'}"  >
+            <br><br><br>
+
+          </div>
+        </div>
+
+
+    </p-dialog>
+</mat-drawer-container>
