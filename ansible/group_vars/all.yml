@@ -1,0 +1,11 @@
+# Ansible
+ansible_python_interpreter: "/usr/bin/python3"
+
+#host-user
+host_user: "desktop-b1qiugg\dell"
+
+
+
+
+
+project_version: "{{ lookup('env','CI_COMMIT_REF_NAME') }}"

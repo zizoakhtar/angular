@@ -1,0 +1,3 @@
+project_version: develop
+project_name: angular-app
+project_dir: "/data/angular-app/{{ project_version }}"
