@@ -92,16 +92,18 @@
         </div></td>
 
 
-        <td><div *ngIf="s.status ==en_cours">
+        <td>
           <a class="btn btn-warning" (click)="ooshow()"><div class="fa fa-fw fa-eraser"></div>Détailles</a>
           <p-dialog  header="Title" [style]="{width: '600px'}" [(visible)]="display">
             <p-accordion>
-              <p-accordionTab header="Nom">
-                {{s.stagiaire.username}}
+              <p-accordionTab header="Encadrant">
+                {{s?.enseig_stage?.email}}
               </p-accordionTab>
-              <p-accordionTab header="Numero">
-                {{s.stagiaire.telephone}}
+              <p-accordionTab header="Nom_stagiaire">
+                {{s?.stagiaire?.username}}
               </p-accordionTab>
+
+
               <p-accordionTab header="Statut">
 
                 {{s.status}}
@@ -111,19 +113,30 @@
               </p-accordionTab>
               <p-accordionTab header=" Fonctionnalités ">
 
-                {{s.fonctionnality}}
+                fonct1 :       {{s.fonctionnality}}
+                <br>
+
+                fonct2 :     {{s.f1}}
+                <br>
+                fonct3 :     {{s.f2}}
+                <br>
+                fonct4 :     {{s.f3}}
               </p-accordionTab>
 
-              <p-accordionTab header="Technologie">
+              <p-accordionTab header="Technologies">
 
-                {{s.techno}}
+                Tech1 :  {{s?.techno}}
+                <br>
+                Tech2 :   {{s?.t1}}
+                <br>
+                Tech3 :    {{s?.t2}}
+                <br>
+                Tech4 :   {{s?.t3}}
               </p-accordionTab>
 
             </p-accordion>
 
-
-          </p-dialog>
-        </div>            </td>
+          </p-dialog>   </td>
 
 
 

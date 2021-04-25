@@ -122,36 +122,46 @@
               <a class="btn btn-warning" (click)="ooshow()"><div class="fa fa-fw fa-eraser"></div>Détailles</a>
               <p-dialog  header="Title" [style]="{width: '600px'}" [(visible)]="display">
                 <p-accordion>
-
-                  <p-accordionTab header="Date">
-
-                    {{s.put}}
-                  </p-accordionTab>
-                  <p-accordionTab header=" Nom ">
-                    {{s.stagiaire.username}}
-                  </p-accordionTab>
-                  <p-accordionTab header="Num">
-                    {{s?.stagiaire.telephone}}
-                  </p-accordionTab>
-                  <p-accordionTab header="Encadrant ESPRIT">
+                  <p-accordionTab header="Encadrant">
                     {{s?.enseig_stage?.email}}
                   </p-accordionTab>
+                  <p-accordionTab header="Nom_stagiaire">
+                    {{s?.stagiaire?.username}}
+                  </p-accordionTab>
 
+
+                  <p-accordionTab header="Statut">
+
+                    {{s.status}}
+                  </p-accordionTab>
                   <p-accordionTab header="Problematique">
                     {{s.problm}}
                   </p-accordionTab>
                   <p-accordionTab header=" Fonctionnalités ">
 
-                    {{s.fonctionnality}}
+                    fonct1 :       {{s.fonctionnality}}
+                    <br>
+                    fonct2 :     {{s.f1}}
+                    <br>
+                    fonct3 :     {{s.f2}}
+                    <br>
+                    fonct4 :     {{s.f3}}
                   </p-accordionTab>
+
                   <p-accordionTab header="Technologies">
-                    {{s.techno}}
+
+                    Tech1 :  {{s?.techno}}
+                    <br>
+                    Tech2 :   {{s?.t1}}
+                    <br>
+                    Tech3 :    {{s?.t2}}
+                    <br>
+                    Tech4 :   {{s?.t3}}
                   </p-accordionTab>
 
                 </p-accordion>
 
               </p-dialog>   </td>
-
 
 
 

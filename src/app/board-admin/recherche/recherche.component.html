@@ -92,11 +92,12 @@ margin-left: 50px; width:1200px;       background-color: cornflowerblue">
           </div>
         </div></div>
     </form>
+    <br>
+    <br>
     <div class="container">
 
-      <div class="panel panel-default" >
 
-        <div class="panel-body" *ngIf="user" >
+        <div class="panel-body" *ngIf="user" style="height: 1500px" >
           <img src="../../../assets/image/wx.jpg" style="width: 970px;margin-left:28px;height:140px;">
 <br><br><br>
           <h3>utilisateur :&nbsp;&nbsp;&nbsp; {{user.stagiaire.username}}</h3>
@@ -106,10 +107,16 @@ margin-left: 50px; width:1200px;       background-color: cornflowerblue">
           <br><h3>Titre de projet :&nbsp;&nbsp;&nbsp;{{user.titre}}</h3>
           <br><h3>Description du projet :&nbsp;&nbsp;&nbsp;{{user.description}}</h3>
           <br><h3>Problématique du projet :&nbsp;&nbsp;&nbsp;{{user.problm}}</h3>
+          <br><h3>Fonctionnalité1 :&nbsp;&nbsp;&nbsp;{{user.fonctionnality}}</h3>
+          <br><h3>Fonctionnalité2:&nbsp;&nbsp;&nbsp;{{user?.f1}}</h3>
+          <br><h3>Fonctionnalité3 :&nbsp;&nbsp;&nbsp;{{user?.f2}}</h3>
+          <br><h3>Fonctionnalité4 :&nbsp;&nbsp;&nbsp;{{user?.f3}}</h3>
+         <div style="margin-top: -700px;margin-left: 600px">
+           <br><h3>Technologie1 :&nbsp;&nbsp;&nbsp;{{user.techno}}</h3>
+           <br><h3>Technologie2:&nbsp;&nbsp;&nbsp;{{user.t1}}</h3>
+           <br><h3>Technologie3 :&nbsp;&nbsp;&nbsp;{{user.t2}}</h3>
+           <br><h3>Technologie4 :&nbsp;&nbsp;&nbsp;{{user.t3}}</h3>
 
-         <div style="margin-top: -381px;margin-left: 600px">
-           <br><h3>Fonctionnalités :&nbsp;&nbsp;&nbsp;{{user.techno}}</h3>
-           <br><h3>technologies :&nbsp;&nbsp;&nbsp;{{user.techno}}</h3>
           <br><h3> Statut du projet ? :&nbsp;&nbsp;&nbsp;{{user?.status}}</h3>
            <br><h3>Note_esprit :&nbsp;&nbsp;&nbsp;{{user?.note_univ}}</h3><br><h3>
            Note_jury :&nbsp;&nbsp;&nbsp;{{user.note_jury}} &nbsp;&nbsp;&nbsp;
@@ -124,9 +131,4 @@ margin-left: 50px; width:1200px;       background-color: cornflowerblue">
 
 
 
-
-
-
-
-    </div>
   </div></mat-drawer-container>

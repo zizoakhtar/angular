@@ -1,7 +1,3 @@
-FROM nginx:1.17.1-alpine
-
-COPY ./dist/tragedel /usr/share/nginx/html
-
-EXPOSE 4201
-
-CMD ["nginx", "-g", "daemon off;"]
+FROM nginx:latest
+COPY dist/tragedel/ /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf

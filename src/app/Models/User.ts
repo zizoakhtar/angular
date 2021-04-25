@@ -11,7 +11,7 @@ export class User {
   email:string;
   telephone:string;
   stage:Stage;
-  propo:proposition;
+  public propo:proposition;
   plagiat:Plagiat;
   valider:string;
 }
