@@ -1,0 +1,102 @@
+<br><br><br><br>
+<h2>
+</h2>
+
+<div class="container"> <!-- Links -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <img src="../../../assets/image/dddd.png" style=" height: 150px;width: 210px;">
+
+    </div>
+
+    <ul class="list-unstyled components">
+
+      <li>
+        <a href="/convention" routerLink="/convention">Convention </a>
+
+      </li>
+      <li>
+        <a href="/fiche" routerLink="/fiche">Fiche-pfe </a>
+
+      </li>
+      <li>
+        <a href="/upload" routerLink="/upload">PFE </a>
+      </li>
+      <li>
+        <a href="/plagiat" routerLink="/plagiat">Plagiat </a>
+      </li>
+      <li>
+        <a href="/noteti" routerLink="/noteti">Note PFE</a>
+      </li>
+      <li>
+        <a href="/avis" routerLink="/avis">Reclamation</a>
+      </li>
+
+
+    </ul>
+
+
+  </nav>
+
+  <!-- Page Content Holder -->
+  <div id="contente"style="margin-top: -10px">
+
+    <td class="panel-body" id ="child-left">
+      <p-scrollPanel [style]="{width: '100%', height: '700px'}" styleClass="custom">
+        <div class="tab-pane" id="tab2">
+
+<div *ngIf="!isSuccessful">
+          <form
+                name="form"
+                (ngSubmit)="f.form.valid && uploadfile()"
+                #f="ngForm"
+                novalidate>
+            <div class="widget">
+              <div class="col-xl-12"></div>
+              <div class="col-xl-12" style=" width:1100px;color: dimgray;">
+                <div style="background-color: cornflowerblue">
+                  <div class="card" style="border: none; background-color:white">
+                    <div class="card-body" style="margin-top: 20px;background-color: white">
+
+                      <h2><span style=" color:darkcyan;width: 20px">Telecharger votre rapport de fin d'etude </span> </h2>
+                      <br><br>          <div >
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped"
+                             role="progressbar" attr.aria-valuenow="{{progress}}"
+                             aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress+'%'}">
+                          {{progress}}%</div>
+                      </div>
+
+                      <label class="btn btn-default">
+                        <input type="file" (change)="selectFile($event)">
+
+                      </label>
+
+                      <br>
+<br>
+
+                      <button  class="btn btn-success" [disabled]="!selectedFiles" type="submit" style=" background-color: darkcyan;">valider</button>
+
+                      <div class="alert alert-light" role="alert">{{ message }}</div>
+                    </div></div></div></div></div></div></form></div>
+                      <div class="card">
+                        <div class="card-header">Rapport</div>
+                        <ul
+                          class="list-group list-group-flush"
+                        >
+                          <li class="list-group-item">
+                            <a href="{{ a.stagiaire.propo.name }}">{{ a.stagiaire.propo.name }}</a>
+                            <span style="margin-top:-70px;margin-left: 860px" class="material-icons"
+                                  (click)="downloadFile(a?.stagiaire?.propo?.name)">
+vertical_align_bottom
+</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                    </div>
+
+        <br><br>
+      </p-scrollPanel>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+
+
+<!-- /.box-header -->
+
+  <p-scrollPanel [style]="{width: '100%', height: '700px'}" styleClass="custom">
+    <div class="col-md-6" style="width: 600px; margin: 0 auto; " >
+
+      <h3 class="title-border">donner vos proposition</h3>
+       <form *ngIf="!isSuccessful"
+                  name="form"
+                  (ngSubmit)="f.form.valid && uploadfile()"
+                  #f="ngForm"
+                  novalidate>
+              <div class="widget">
+                <div >
+
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped"
+                         role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                         aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                      {{progress.percentage}}%</div>
+                  </div>
+
+                  <label class="btn btn-default">
+                    <input type="file" (change)="selectFile($event)">
+                  </label>
+                  <div class="form-group">
+                    <label for="description" > Description</label>
+                    <textarea id="description"   #descriptions="ngModel" required
+                              minlength="3"
+                              maxlength="2000" class="form-control" type="text" name="description" ngModel [(ngModel)]="description"></textarea>
+                  </div>
+                  <div class="alert-danger" *ngIf="f.submitted && descriptions.invalid">
+                    <div *ngIf="descriptions.errors.required">description is required</div>
+                    <div *ngIf="descriptions.errors.minlength">
+                      description must be at least 3 characters
+                    </div>
+                    <div *ngIf="descriptions.errors.maxlength">
+                      description must be at most 20 characters
+                    </div>
+                  </div>
+
+                  <button  class="btn btn-success" [disabled]="!selectedFiles" type="submit" >valider</button>
+                </div>
+              </div><!-- Text widget end -->
+            </form>
+          </div>
+
+        <br><br>
+
+
+
+  </p-scrollPanel>

@@ -1,0 +1,48 @@
+<button mat-icon-button (click)="drawer.toggle()" xmlns="http://www.w3.org/1999/html">
+  <mat-icon>menu</mat-icon>
+</button>
+
+
+
+
+
+
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" >
+    <mat-nav-list>
+      <div class="profile-card" style="background-color:#0D3c73;margin-right: 1000px">
+
+        <img src="../../../assets/image/000.jpg" style="height: 170px;width:210px" >
+    <br><br>    <h4><span style="margin-left: 44px;">{{currentUser.email}}</span></h4>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Pages</h2>
+
+      <a mat-list-item href="/tout" routerLink="/tout">Toutes les stages</a>
+      <a mat-list-item href="/fiches" routerLink="/fiches">Toutes les fiches</a>
+      <a mat-list-item href="/list1" routerLink="/list1">Affecter-Encadrant </a>
+      <a mat-list-item href="/list2" routerLink="/list2">Affecter Rapporteur </a>
+      <a mat-list-item href="/allAvis" routerLink="/allAvis">Reclamations </a>
+      <a mat-list-item a href="/pie" routerLink="/pie">Statistique </a>
+      <a mat-list-item  a href="/recherche" routerLink="/recherche">Rechercher</a>
+      <a mat-list-item  a href="/validation" routerLink="/validation">Valider stage</a>
+
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Tools</h2>
+
+
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="example-sidenav-content" style="margin-top: -800px">
+
+  </div>
+  <img src="../../../assets/image/123.PNG" style="width: 1514px;height:700px;">
+
+</mat-drawer-container>
+

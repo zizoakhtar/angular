@@ -1,0 +1,199 @@
+<button mat-icon-button (click)="drawer.toggle()" xmlns="http://www.w3.org/1999/html">
+  <mat-icon>menu</mat-icon>
+</button>
+
+
+
+
+
+
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" >
+    <mat-nav-list>
+      <div class="profile-card" style="margin-right: 1000px">
+
+        <img src="../../../assets/image/000.jpg" style="height: 170px;width:210px" >
+        <h4><span style="margin-left: 44px">{{currentUser.email}}</span></h4>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Pages</h2>
+
+      <a mat-list-item href="/tout" routerLink="/tout">Toutes les stages</a>
+      <a mat-list-item href="/fiches" routerLink="/fiches">Toutes les fiches</a>
+
+      <a mat-list-item href="/list1" routerLink="/list1">Affecter-Encadrant </a>
+      <a mat-list-item href="/list2" routerLink="/list2">Affecter Rapporteur </a>
+      <a mat-list-item href="/allAvis" routerLink="/allAvis">Reclamations </a>
+      <a mat-list-item a href="/pie" routerLink="/pie">Statistique </a>
+      <a mat-list-item  a href="/recherche" routerLink="/recherche">Rechercher</a>
+      <a mat-list-item  a href="/validation" routerLink="/validation">Valider stage</a>
+
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Tools</h2>
+
+
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="example-sidenav-content" style="margin-top: -1000px">
+
+  </div>
+  <div class="card"  style="margin-left: 10px; width: 1520px;margin-top: 267px">
+
+
+
+  <p-table #dt [value]="t1" [rows]="10" [paginator]="true"
+           [globalFilterFields]="[  'theme',
+      'Enseig_stage',
+      'Enseig_option',
+      'stagiaire',
+      'etablissement',
+      'adresse',
+      'adresse_electro',
+      'status',
+      'enc_entreprise',
+      'mail_enc_entreprise',
+      'dateDeb',
+'datefin'
+]"
+           [rowHover]="true" dataKey="id"
+
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+           [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between ">
+                <span class="p-input-icon-left ">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                           placeholder="        Rechercher..." />
+                </span>
+      </div>
+
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+
+        <th pSortableColumn="theme">Etudiant
+          <p-sortIcon field="theme"></p-sortIcon>
+        </th>
+        <th pSortableColumn="dateDebut">Theme
+          <p-sortIcon field="dateDebut"></p-sortIcon>
+        </th>
+        <th pSortableColumn="dateFin">Statut
+          <p-sortIcon field="dateFin"></p-sortIcon>
+        </th>
+        <th pSortableColumn="dateFin">Date
+          <p-sortIcon field="dateFin"></p-sortIcon>
+        </th>
+
+
+        <th pSortableColumn="supp">
+          <mat-icon>work_off</mat-icon>
+        </th>
+
+        <th>
+          <i class="pi pi-angle-double-down" style="font-size: 2rem"></i>
+
+        </th>
+        <th pSortableColumn="supp">
+          <span class="material-icons">
+get_app
+</span>
+        </th>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-s>
+      <tr  >
+
+        <td>{{s?.stagiaire?.email}}</td>
+        <td>{{s?.theme}}</td>
+        <td>{{s?.status}}</td>
+        <td>{{s?.put}}</td>
+
+
+        <td>
+          <a class="btn btn-danger"
+             style="background-color: rosybrown"
+             (click)="onDelete(s.id)"><div class="fa fa-fw fa-eraser"></div>Annuler</a>
+        </td>
+        <td>
+          <a class="btn btn-warning" (click)="ooshow()"><div class="fa fa-fw fa-eraser"></div>Détailles</a>
+          <p-dialog  header="Title" [style]="{width: '600px'}" [(visible)]="display">
+            <p-accordion>
+              <p-accordionTab header="Date_debut">
+                {{s.dateDeb}}
+              </p-accordionTab>
+              <p-accordionTab header=" Date_fin ">
+
+                {{s.datefin}}
+              </p-accordionTab>
+
+              <p-accordionTab header="Etablissement">
+
+                {{s.etablissement}}
+              </p-accordionTab>
+              <p-accordionTab header=" Adresse ">
+                {{s.adresse}}
+              </p-accordionTab>
+
+              <p-accordionTab header="Encadrant_entreprise">
+                {{s.adresse}}
+              </p-accordionTab>
+              <p-accordionTab header="Mail_enc_entreprise">
+                {{s.mail_enc_entreprise}}
+              </p-accordionTab>
+              <p-accordionTab header="Nom">
+                {{s.stagiaire.username}}
+              </p-accordionTab>
+              <p-accordionTab header="Numero">
+                {{s.stagiaire.telephone}}
+              </p-accordionTab>
+              <p-accordionTab header="Rapport">
+                {{s?.stagiaire?.propo?.name}}
+                <span style="margin-top:-70px;margin-left: 500px" class="material-icons" (click)="downloadFile(s?.stagiaire?.propo?.name)">
+vertical_align_bottom
+</span>
+              </p-accordionTab>
+              <p-accordionTab header="Rapport_plagiat">
+                {{s?.stagiaire?.plagiat?.name}}
+                <span style="margin-left: 500px" class="material-icons" (click)="downloadPlagiat(s?.stagiaire?.plagiat?.name)">
+vertical_align_bottom
+</span>
+              </p-accordionTab>
+            </p-accordion>
+
+          </p-dialog>   </td>
+
+
+        <td>
+          <a class="btn bg-success" (click)="all(s.id)"><div class="fa fa-fw fa-eraser"></div>PDF</a>
+        </td>
+
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        Au total, il y a {{t1 ? t1.length : 0 }} convention(s).
+      </div>
+    </ng-template>
+  </p-table>
+
+
+
+
+
+
+
+
+</div>
+
+
+</mat-drawer-container>
+

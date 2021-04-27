@@ -1,0 +1,87 @@
+<button mat-icon-button (click)="drawer.toggle()" xmlns="http://www.w3.org/1999/html">
+  <mat-icon>menu</mat-icon>
+</button>
+
+
+
+
+
+
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" >
+    <mat-nav-list>
+      <div class="profile-card" style="margin-right: 1000px">
+
+        <img src="../../../assets/image/000.jpg" style="height: 170px;width:210px" >
+        <h4><span style="margin-left: 44px">{{currentUser.email}}</span></h4>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Pages</h2>
+
+      <a mat-list-item href="/tout" routerLink="/tout">Toutes les stages</a>
+      <a mat-list-item href="/fiches" routerLink="/fiches">Toutes les fiches</a>
+
+      <a mat-list-item href="/list1" routerLink="/list1">Affecter-Encadrant </a>
+      <a mat-list-item href="/list2" routerLink="/list2">Affecter Rapporteur </a>
+      <a mat-list-item href="/allAvis" routerLink="/allAvis">Reclamations </a>
+      <a mat-list-item a href="/pie" routerLink="/pie">Statistique </a>
+      <a mat-list-item  a href="/recherche" routerLink="/recherche">Rechercher</a>
+      <a mat-list-item  a href="/validation" routerLink="/validation">Valider stage</a>
+
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Tools</h2>
+
+
+    </mat-nav-list>
+  </mat-drawer>
+  <div class="example-sidenav-content" style="margin-top: -1000px">
+
+  </div>
+  <div class="card"  style="margin-left: 10px; width: 1520px;margin-top: 259px">
+
+    <div style=" margin-left:-200px;height:300px;display: block;">
+
+    <div class="widget">
+      <div class="col-xl-12"></div>
+      <div class="col-xl-12" style=" width:1080px;color: dimgray;">
+        <div style="background-color: cornflowerblue">
+          <div class="card" style="border: none; background-color:white">
+            <div class="card-body" style="margin-top: 20px;background-color: white">
+              <h2><span style=" margin-left:250px;color:darkcyan;width: 20px">****** Statisque selon la statut du stage ****** </span> </h2>
+              <br><br>
+              <canvas baseChart
+          [data]="pieChartData1"
+          [labels]="pieChartLabels1"
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [plugins]="pieChartPlugins"
+          [legend]="pieChartLegend"
+[colors]="pieChartColors">
+  >
+  </canvas>
+</div>
+
+            <div style="display:  block; width: 1500px;margin-top: -670px;height:600px;margin-left: 760px">
+
+              <div class="widget">
+                <div class="col-xl-12"></div>
+                <div class="col-xl-12" style=" width:1100px;color: dimgray;">
+                  <div style="background-color: cornflowerblue">
+                    <div class="card" style="border: none; background-color:white">
+                      <div class="card-body" style="margin-top: 20px;background-color: white">
+                <br>        <h2><span style=" margin-left:320px;margin-top:500px;color:darkcyan;width: 20px">****** Statisque selon l'année du mise de rapport ****** </span> </h2>
+                        <br><br>
+                        <p-chart type="doughnut"
+                                 [data]="data"
+>
+                        </p-chart>
+                      </div>
+
+
+          </div></div>
+                </div></div></div></div></div></div></div></div></div></mat-drawer-container>

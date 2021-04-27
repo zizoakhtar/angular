@@ -1,0 +1,178 @@
+<button mat-icon-button (click)="drawer.toggle()" xmlns="http://www.w3.org/1999/html">
+  <mat-icon>menu</mat-icon>
+</button>
+
+
+
+
+
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" >
+    <mat-nav-list>
+      <div class="profile-card" style="background-color:#0D3c73;margin-right: 1000px">
+
+        <img src="../../../assets/img/second-portfolio-big.jpg" style=" margin-left:40px;height: 220px;height: 110px" >
+        <br><br>    <h4><span style="margin-left: 44px">{{currentUser.email}}</span></h4>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Pages</h2>
+
+      <a mat-list-item href="/cv" routerLink="/cv">Toutes les stages</a>
+      <a mat-list-item href="/nt" routerLink="/nt">Toutes les fiches</a>
+
+
+      <mat-divider></mat-divider>
+
+      <h2 matSubheader>Tools</h2>
+
+
+    </mat-nav-list>
+  </mat-drawer>
+
+
+  <div class="card"style="margin-top: -7px">
+
+
+
+  <p-table #dt [value]="t1" [rows]="10" [paginator]="true"
+           [globalFilterFields]="[  'theme',
+      'Enseig_stage',
+      'Enseig_option',
+      'stagiaire',
+      'etablissement',
+      'adresse',
+      'adresse_electro',
+      'status',
+      'enc_entreprise',
+      'mail_enc_entreprise',
+      'dateDeb',
+'datefin'
+]"
+           [rowHover]="true" dataKey="id"
+
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+           [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between ">
+                <span class="p-input-icon-left ">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                           placeholder="        Rechercher..." />
+                </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+
+        <th pSortableColumn="theme">Etudiant
+          <p-sortIcon field="theme"></p-sortIcon>
+        </th>
+        <th pSortableColumn="dateDebut">Theme
+          <p-sortIcon field="dateDebut"></p-sortIcon>
+        </th>
+        <th pSortableColumn="dateFin">Statut
+          <p-sortIcon field="dateFin"></p-sortIcon>
+        </th>
+        <th pSortableColumn="statut">Encadrant_esprit
+          <p-sortIcon field="statut"></p-sortIcon>
+        </th>
+        <th pSortableColumn="statut">Rapporteur
+          <p-sortIcon field="statut"></p-sortIcon>
+        </th>
+
+        <th>
+          <i class="pi pi-angle-double-down" style="font-size: 2rem"></i>
+
+        </th>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-s>
+      <tr *ngIf="s?.status ==en_cours">
+
+        <td><div *ngIf="s.status ==en_cours">{{s.stagiaire.email}}</div></td>
+        <td><div *ngIf="s.status ==en_cours">{{s.theme}}</div></td>
+        <td><div *ngIf="s.status ==en_cours">{{s.status}}</div></td>
+
+        <td><div *ngIf="s?.status ==en_cours">{{s?.enseig_stage?.email}}</div></td>
+        <td><div *ngIf="s?.status ==en_cours">{{s?.enseig_option?.email}}</div></td>
+
+
+        <td><div *ngIf="s.status ==en_cours">
+          <a class="btn btn-warning" (click)="ooshow()"><div class="fa fa-fw fa-eraser"></div>Détailles</a>
+          <p-dialog  header="Title" [style]="{width: '600px'}" [(visible)]="display">
+            <p-accordion>
+              <p-accordionTab header="Date_debut">
+
+                <div *ngIf="s.status ==en_cours">{{s.dateDeb}}</div>
+              </p-accordionTab>
+              <p-accordionTab header=" Date_fin ">
+                <div *ngIf="s.status ==en_cours">{{s.datefin}}</div>
+              </p-accordionTab>
+
+              <p-accordionTab header="Etablissement">
+
+                <div *ngIf="s.status ==en_cours">{{s.etablissement}}</div>
+              </p-accordionTab>
+              <p-accordionTab header=" Adresse ">
+                <div *ngIf="s.status ==en_cours">{{s.adresse}}</div>
+              </p-accordionTab>
+              <p-accordionTab header="Adresse_mail">
+                <div *ngIf="s.status ==en_cours">{{s.adresse_electro}}</div>
+              </p-accordionTab>
+              <p-accordionTab header="Encadrant_entreprise">
+                <div *ngIf="s.status ==en_cours">{{s.adresse}}</div>
+              </p-accordionTab>
+              <p-accordionTab header="Mail_enc_entreprise">
+                <div *ngIf="s.status ==en_cours">{{s.mail_enc_entreprise}}</div>
+              </p-accordionTab>
+              <p-accordionTab header="Nom">
+                {{s.stagiaire.username}}
+              </p-accordionTab>
+              <p-accordionTab header="Numero">
+                {{s.stagiaire.telephone}}
+              </p-accordionTab>
+              <p-accordionTab header="Rapport">
+                {{s?.stagiaire?.propo?.name}}
+                <span style="margin-top:-70px;margin-left: 500px" class="material-icons" (click)="downloadFile(s?.stagiaire?.propo?.name)">
+vertical_align_bottom
+</span>
+              </p-accordionTab>
+              <p-accordionTab header="Rapport_plagiat">
+                {{s?.stagiaire?.plagiat?.name}}
+                <span style="margin-left: 500px" class="material-icons" (click)="downloadPlagiat(s?.stagiaire?.plagiat?.name)">
+vertical_align_bottom
+</span>
+              </p-accordionTab>
+            </p-accordion>
+
+          </p-dialog>
+        </div>            </td>
+
+
+
+
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        Au total, il y a {{t1 ? t1.length : 0 }} convention(s).
+      </div>
+    </ng-template>
+  </p-table>
+
+
+
+
+
+
+</div>
+
+
+
+
+</mat-drawer-container>
